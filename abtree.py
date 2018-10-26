@@ -104,8 +104,8 @@ class ABTree:
                 lsize = (children + 1) // 2
                 left = InternalNode(node)
                 left.children = node.children[:lsize]
-                for left in left.children:
-                    left.parent = left
+                for child in left.children:
+                    child.parent = left
                 left.keys = node.keys[:lsize]
                 right = InternalNode(node)
                 right.children = node.children[-lsize:]
