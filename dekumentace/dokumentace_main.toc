@@ -1,0 +1,5 @@
+\select@language {czech}
+\contentsline {section}{\numberline {1}Definice}{}
+\contentsline {section}{\numberline {2}Metody}{}
+\contentsline {section}{\numberline {3}Popis algoritm\IeC {\r u}}{}
+\contentsline {section}{\numberline {4}Anal\IeC {\'y}za slo\IeC {\v z}itosti}{}

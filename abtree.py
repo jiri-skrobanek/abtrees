@@ -2,7 +2,7 @@ import math
 
 
 class InternalNode:
-    def __init__(self, parent):
+    def __init__(self, parent=None):
         self.keys = []
         self.children = []
         self.parent = parent
@@ -12,13 +12,13 @@ class InternalNode:
 
 
 class ExternalNode:
-    def __init__(self, key, value=None):
+    def __init__(self, key: int, value=None):
         self.key = key
         self.value = value
 
 
 class ABTree:
-    def __init__(self, a:int, b:int):
+    def __init__(self, a: int, b: int):
         if a < 2:
             raise ValueError('Improper a,b choice.')
         if b < 2*a - 1:
@@ -32,7 +32,7 @@ class ABTree:
     def item_count(self):
         return self.count
 
-    def find(self, key):
+    def find(self, key: int):
         if not self.root:
             return None
 
@@ -50,7 +50,7 @@ class ABTree:
             return node.value
         return None
 
-    def insert(self, key, value=None):
+    def insert(self, key: int, value=None):
         if self.root is None:
             self.root = InternalNode(None)
             self.root.keys.append(key)
@@ -66,11 +66,6 @@ class ABTree:
             i = 0
             while node.keys[i] < key:
                 i += 1
-            #if type(node.children[i]) is ExternalNode:
-            #    inter = InternalNode(node)
-            #    inter.keys.append(node.keys[i])
-            #    inter.children.append(node.children[i])
-            #    node.children[i] = inter
 
             node = node.children[i]
 
@@ -85,7 +80,7 @@ class ABTree:
 
         self.count += 1
 
-    def __rebalance(self, node):
+    def __rebalance(self, node: InternalNode):
         children = len(node.children)
 
         if node.parent is None:
@@ -144,7 +139,7 @@ class ABTree:
             else:
                 self.__fuse_ith_with_right(node.parent, i - 1)
 
-    def __fuse_ith_with_right(self, node, i):
+    def __fuse_ith_with_right(self, node: InternalNode, i: int):
         left = node.children[i]
         right = node.children[i+1]
         right.keys = left.keys + right.keys
@@ -155,7 +150,7 @@ class ABTree:
             child.parent = right
         self.__rebalance(right)
 
-    def find_leq(self, key):
+    def find_leq(self, key: int):
         if key == math.inf:
             raise ValueError('Infinity!')
         if self.root is None:
@@ -173,7 +168,7 @@ class ABTree:
             i += 1
         return node.children[i].key, node.children[i].value
 
-    def find_lesser(self, key):
+    def find_lesser(self, key: int):
         if key == math.inf:
             raise ValueError('Infinity!')
         if self.root is None:
@@ -191,7 +186,7 @@ class ABTree:
             i += 1
         return node.children[i].key, node.children[i].value
 
-    def find_geq(self, key):
+    def find_geq(self, key: int):
         if key == math.inf:
             raise ValueError('Infinity!')
         if self.root is None:
@@ -209,7 +204,7 @@ class ABTree:
             i += 1
         return node.children[i].key, node.children[i].value
 
-    def find_greater(self, key):
+    def find_greater(self, key: int):
         if key == math.inf:
             raise ValueError('Infinity!')
         if self.root is None:
@@ -227,7 +222,7 @@ class ABTree:
             i += 1
         return node.children[i].key, node.children[i].value
 
-    def contains(self, key):
+    def contains(self, key: int):
         node = self.root
         lvl = 0
 
@@ -244,7 +239,7 @@ class ABTree:
 
         return False
 
-    def delete(self, key):
+    def delete(self, key: int):
         if not self.root:
             raise ValueError('No such key in tree.')
 
@@ -286,52 +281,3 @@ class ABTree:
         self.__rebalance(node)
 
         self.count -= 1
-
-
-def make_dummy_tree():
-    tree = ABTree(2,3)
-    tree.root = InternalNode(None)
-    tree.level = 2
-
-    left = InternalNode(tree.root)
-
-    one = ExternalNode(1,1)
-    two = ExternalNode(2,2)
-    three = ExternalNode(3,3)
-
-    left.children = [
-        one, two, three
-    ]
-    left.keys = [
-        1,2,9999
-    ]
-
-    right = InternalNode(tree.root)
-
-    six = ExternalNode(6, 9)
-    nine = ExternalNode(9, 9)
-
-    right.children = [
-        six, nine
-    ]
-    right.keys = [
-        6, 9999
-    ]
-
-    tree.root.children = [
-        left, right
-    ]
-    tree.root.keys = [
-        3, 9999
-    ]
-
-    return tree
-
-
-if __name__ == '__main__':
-    tree = make_dummy_tree()
-    print(tree.find(2))
-    print(tree.find(1.5))
-    print(tree.find(3))
-    print(tree.find(9))
-    print(tree.find(10))

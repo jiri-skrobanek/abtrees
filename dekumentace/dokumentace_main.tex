@@ -1,0 +1,69 @@
+\documentclass[a4paper,11pt,openany]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{geometry}
+\usepackage{tikz,multirow,listingsutf8,multicol,amsmath,amsfonts}
+\lstset{showstringspaces=false,stringstyle=\color{orange},keywordstyle=\bfseries\color{blue!60!black},}
+\geometry{left=20mm,right=20mm,top=20mm,bottom=20mm}
+\parindent=0mm
+\parskip=0mm
+\usepackage{lipsum}
+\newcommand{\quotefont}[2]{
+#1 [online]. [Citováno \today].\\
+Dostupné z:\\\small \ttfamily #2 \normalfont
+}
+\newcommand{\float}{\texttt{float}}
+
+\begin{document}
+\begin{center}
+	\pagenumbering{gobble}
+	{\huge \textbf{(a,b)-stromy}}\\\vspace{\baselineskip}Zápočtová práce z Programování I pro pokročilé\\
+	\vspace{10mm} {\large Jiří Škrobánek\footnote[1]{Matematicko-fyzikální fakulta Univerzity Karlovy, {\ttfamily jiri@skrobanek.cz}}}\\
+	\vspace{10mm}\today, Ostrava
+\end{center}
+
+\section*{Abstract}
+
+This documentation describes the entire functionality of (a,b)-trees implementation in Python 3 by Jiří Škrobánek. Aside from listing all methods, principles of (a,b)-trees are explained and complexity of used algorithms is analysed.
+
+\tableofcontents
+
+\section{Definice}
+(a.b)-strom je strom. Musí platit $(a,b) \in \mathbb{N}^2, 2 \leq a, 2a - 1 \leq b $. (a,b)-strom je buďto prázdný, nebo mají všechny vnitřní vrcholy nejméně $a$ synů a nejvýše $b$ synů. Výjimkou je kořen, jenž musí mít mezi 2 a $b$ syny. Všechny listy leží v jedné hladiny. Vnějším vrcholům jsou přiřazeny unikátní klíče (prvky lineárně uspořádané množiny). Vnitřním vrcholům je přiřazen maximální klíč z jeho synů. Ve vnitřním vrcholu jsou uloženy klíče synů ve vzestupném pořadí. Pro každý podstrom platí, že mimo podstrom neexistují vnější vrcholy, které mají nižší klíč než maximální klíč v podstromu a zároveň vyšší klíč než minimální v~podstromu.
+
+V tomto stromě se dá vyhledat vnější vrchol dle klíče v logaritmickém čase vzhledem k počtu vnějších vrcholů. Přidávání a odebírání listů rovněž funguje v logaritmickém čase.
+
+Speciálním případem (a,b)-stromů $a$ jsou
+
+\section{Metody}
+\begin{lstlisting}[language=python,frame=none]
+__init__(a: int,b: int)
+\end{lstlisting}
+\begin{lstlisting}[language=python,frame=none]
+insert(key: int, value=None)
+\end{lstlisting}
+\section{Popis algoritmů}
+
+\lipsum[10]
+
+\lipsum[10]
+
+\section{Analýza složitosti}
+
+\lipsum[10]
+
+\lipsum[10]
+
+\listoffigures
+\listoftables
+\section*{Seznam příloh}
+%\addcontentsline{toc}{chapter}{Seznam příloh}
+\begin{enumerate}
+	\item[A.] Zdrojový kód knihovny
+	\item[B.] Zdrojové kódy příkladů
+\end{enumerate}
+\begin{thebibliography}{10}
+	\bibitem{aocp}
+	KNUTH, Donald Ervin. The Art of Computer Programming. Upper Saddle River, NJ: Addison-Wesley, 2011. ISBN 978-0321751041.
+\end{thebibliography}
+\end{document}
