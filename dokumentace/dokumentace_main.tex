@@ -33,15 +33,97 @@ This documentation describes the entire functionality of (a,b)-trees implementat
 
 V tomto stromě se dá vyhledat vnější vrchol dle klíče v logaritmickém čase vzhledem k počtu vnějších vrcholů. Přidávání a odebírání listů rovněž funguje v logaritmickém čase.
 
-Speciálním případem (a,b)-stromů $a$ jsou
+Speciálním případem (a,b)-stromů $2a-1=b$ jsou B-stromy, mimo jiné oblíbený 2-3-strom.
 
 \section{Metody}
+Knihovna obsahuje třídy \texttt{InternalNode} a \texttt{ExternalNode} pro vnitřní a vnější vrcholy a třídu \texttt{ABTree}, která má metody popsané níže.
+
+Počet vnějších vrcholů ve stromě značíme $E$.
+
 \begin{lstlisting}[language=python,frame=none]
 __init__(a: int,b: int)
 \end{lstlisting}
+Vytvoří (a,b)-strom pro konkrétní hodnoty $a,b$.
+
+Výjimky: \texttt{ValueError}: Neplatná volba parametrů.
+
+Složitost: $\mathcal{O}(1)$
 \begin{lstlisting}[language=python,frame=none]
-insert(key: int, value=None)
+insert(self, key: int, value=None)
 \end{lstlisting}
+Vloží do stromu uspořádanou dvojici (key, value). Value může být libovolného typu nebo \texttt{None}.
+
+Výjimky: \texttt{ValueError}: Strom již klíč obsahuje.
+
+Složitost: $\Theta(\log(E))$
+
+\begin{lstlisting}[language=python,frame=none]
+delete(self, key: int)
+\end{lstlisting}
+Vymaže ze stromu vnější vrchol s klíčem \texttt{key}.
+
+Výjimky: \texttt{ValueError}: Strom klíč neobsahuje.
+
+Složitost: $\Theta(\log(E))$
+
+\begin{lstlisting}[language=python,frame=none]
+contains(self, key: int)
+\end{lstlisting}
+
+Vrací: \texttt{bool} Zda strom obsahuje daný klíč.
+
+Složitost: $\Theta(\log(E))$
+
+\begin{lstlisting}[language=python,frame=none]
+find(self, key: int)
+\end{lstlisting}
+
+Vrací: Hodnotu ve vnějším vrcholu s daným klíčem.
+
+Výjimky: \texttt{ValueError}: Strom klíč neobsahuje.
+
+Složitost: $\Theta(\log(E))$
+
+\begin{lstlisting}[language=python,frame=none]
+item_count(self)
+\end{lstlisting}
+
+Vrací: \texttt{int} Počet vnějších vrcholů ve stromě.
+
+Složitost: $\mathcal{O}(1)$
+
+\begin{lstlisting}[language=python,frame=none]
+find_leq(self, key: int)
+\end{lstlisting}
+
+Vrací: \texttt{(k, value)} Uspořádaná dvojice klíče a hodnoty z vnějšího vrcholu, který má maximální klíč v množině vrcholů s klíčem v intervalu $\left( -\infty, key\right\rangle $
+
+Složitost: $\mathcal{O}(\log E)$
+
+\begin{lstlisting}[language=python,frame=none]
+find_lesser(self, key: int)
+\end{lstlisting}
+
+Vrací: \texttt{(k, value)} Uspořádaná dvojice klíče a hodnoty z vnějšího vrcholu, který má maximální klíč v množině vrcholů s klíčem v intervalu $\left( -\infty, key\right) $
+
+Složitost: $\mathcal{O}(\log E)$
+
+\begin{lstlisting}[language=python,frame=none]
+find_geq(self, key: int)
+\end{lstlisting}
+
+Vrací: \texttt{(k, value)} Uspořádaná dvojice klíče a hodnoty z vnějšího vrcholu, který má minimální klíč v množině vrcholů s klíčem v intervalu $\left\langle key, \infty \right) $
+
+Složitost: $\mathcal{O}(\log E)$
+
+\begin{lstlisting}[language=python,frame=none]
+find_greater(self, key: int)
+\end{lstlisting}
+
+Vrací: \texttt{(k, value)} Uspořádaná dvojice klíče a hodnoty z vnějšího vrcholu, který má minimální klíč v množině vrcholů s klíčem v intervalu $\left( key, \infty \right) $
+
+Složitost: $\mathcal{O}(\log E)$
+
 \section{Popis algoritmů}
 
 \lipsum[10]
