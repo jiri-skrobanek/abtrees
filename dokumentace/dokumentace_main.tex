@@ -151,8 +151,22 @@ Může být porušeno vyvážení stromu, proto je třeba zavolat vyvažování 
 
 Pokud jsme přidávali nebo mazali od posledního spuštění vyvažování pouze jeden vrchol, povolený počet synů ve vrcholech může být porušen o nejvýše 1.
 
+Pokud ve stromě zůstal kořen a jeden vrchol ($\infty$), strom se stane prázdným.
 
-	
+Kontrolu stromu vždy začínáme v nějakém vrcholu. A může se vyvíjet několika způsoby:
+
+\begin{itemize}
+	\item
+	Pokud je kontrolovaný vrchol kořen, který má jediného syna, odstraníme ho z grafu a jeho syn se stane novým kořenem. Ukončíme vyvažování.
+	\item
+	Pokud je kontrolovaný vrchol kořen a má více než $b$ synů, rozdělíme ho na dva a vytvoříme jim nového otce, který bude kořenem stromu. Ukončíme vyvažování.
+	\item
+	Pokud má kontrolovaný vrchol více než $b$ synů: Rozdělíme jej na dva, oba vrcholy získají nejméně $a$ synů, rozdělených podle velikosti. Tím mohl otec získat příliš mnoho synů, kontrolu pokračujeme na něm.
+	\item
+	Pokud má kontrolovaný vrchol méně než $a$ synů: Zkontrolujeme, zda se nemůže levý nebo pravý rozdělit o syny s tímto vrcholem, aby měly oba alespoň $a$ synů. Pokud toto nejde, sloučením s jedním z nich vznikne vrchol s povoleným počtem synů. Poté je potřeba pokračovat s kontrolou v otci, protože ztratil jednoho syna.
+	\item
+	Pokud je vše s vrcholem v pořádku, vyvažování ukončíme.
+\end{itemize}
 \section{Analýza složitosti}
 	
 \lipsum[10]
