@@ -1,5 +1,9 @@
 \select@language {czech}
-\contentsline {section}{\numberline {1}Definice}{}
-\contentsline {section}{\numberline {2}Metody}{}
-\contentsline {section}{\numberline {3}Popis algoritm\IeC {\r u}}{}
-\contentsline {section}{\numberline {4}Anal\IeC {\'y}za slo\IeC {\v z}itosti}{}
+\contentsline {section}{\numberline {1}Definice}{1}
+\contentsline {section}{\numberline {2}Metody}{1}
+\contentsline {section}{\numberline {3}Stru\IeC {\v c}n\IeC {\'y} popis algoritm\IeC {\r u}}{2}
+\contentsline {subsection}{\numberline {3.1}Vkl\IeC {\'a}d\IeC {\'a}n\IeC {\'\i }}{2}
+\contentsline {subsection}{\numberline {3.2}Hled\IeC {\'a}n\IeC {\'\i }}{3}
+\contentsline {subsection}{\numberline {3.3}Maz\IeC {\'a}n\IeC {\'\i }}{3}
+\contentsline {subsection}{\numberline {3.4}Vyva\IeC {\v z}ov\IeC {\'a}n\IeC {\'\i }}{3}
+\contentsline {section}{\numberline {4}Anal\IeC {\'y}za slo\IeC {\v z}itosti}{3}

@@ -263,7 +263,7 @@ class ABTree:
         del node.children[i]
         del node.keys[i]
 
-        if i == len(node.keys): # Deleted last key, change keys in ancestors.
+        if i == len(node.keys):  # Deleted last key, change keys in ancestors.
             parent = node.parent
             while lev >= 0:
                 j = 0

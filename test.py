@@ -39,7 +39,7 @@ class MakeTree(unittest.TestCase):
         self.assertTrue(tree.contains(15))
         self.assertTrue(tree.contains(150))
         self.assertFalse(tree.contains(-7))
-        self.assertFalse(tree.contains(1e6))
+        self.assertFalse(tree.contains(1000000))
 
     def test_make_dummy_tree(self):
         tree = ABTree(2, 3)
@@ -77,3 +77,11 @@ class MakeTree(unittest.TestCase):
         tree.root.keys = [
             3, 9999
         ]
+
+    def test_delete(self):
+        tree = ABTree(2,3)
+        for i in range(50):
+            tree.insert((7*i+3)%101,(7*i+3)%101)
+        tree.delete(7*10+3)
+
+        self.assertEqual(49, tree.item_count())
