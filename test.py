@@ -78,10 +78,31 @@ class MakeTree(unittest.TestCase):
             3, 9999
         ]
 
+
+class DeleteFromTree(unittest.TestCase):
+
     def test_delete(self):
         tree = ABTree(2,3)
         for i in range(50):
-            tree.insert((7*i+3)%101,(7*i+3)%101)
+            tree.insert((7*i+3) % 101, (7*i+3) % 101)
         tree.delete(7*10+3)
 
         self.assertEqual(49, tree.item_count())
+
+    def test_empty(self):
+        tree = ABTree(3, 5)
+        for i in range(50):
+            tree.insert((37 * i + 3) % 25999, (37 * i + 3) % 25999)
+
+        for i in range(50):
+            tree.delete((37 * i + 3) % 25999)
+
+    def test_empty2(self):
+        tree = ABTree(3, 5)
+        for i in range(5000):
+            tree.insert((37 * i + 3) % 25999, (37 * i + 3) % 25999)
+
+        for i in range(5000):
+            tree.delete((37 * i + 3) % 25999)
+
+        self.assertEqual(tree.item_count(), 0)

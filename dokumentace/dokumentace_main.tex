@@ -33,7 +33,7 @@ This documentation describes the entire functionality of (a,b)-trees implementat
 	
 V tomto stromě se dá vyhledat vnější vrchol dle klíče v logaritmickém čase vzhledem k počtu vnějších vrcholů. Přidávání a odebírání listů rovněž funguje v logaritmickém čase.
 	
-Speciálním případem (a,b)-stromů $2a-1=b$ jsou B-stromy, mimo jiné oblíbený 2-3-strom.
+Speciálním případem (a,b)-stromů pro $2a-1=b$ jsou B-stromy, mimo jiné oblíbený 2-3-strom.
 	
 \section{Metody}
 Knihovna obsahuje třídy \texttt{InternalNode} a \texttt{ExternalNode} pro vnitřní a vnější vrcholy a třídu \texttt{ABTree}, která má metody popsané níže.
@@ -167,12 +167,25 @@ Kontrolu stromu vždy začínáme v nějakém vrcholu. A může se vyvíjet něk
 	\item
 	Pokud je vše s vrcholem v pořádku, vyvažování ukončíme.
 \end{itemize}
+
+Výsledkem vyvažování je platný (a,b)-strom.
+
 \section{Analýza složitosti}
-	
-\lipsum[10]
-	
-\lipsum[10]
-	
+
+\subsection{Minimální vyváženost stromu}
+
+Pokud má strom $e$ vnějších vrcholů, strom má hloubku nejvýše $\lceil\log_a e\rceil + 1$.
+
+Z definice musejí mít všechny vnitřní vrcholy nejméně $a$ synů, a proto počet vrcholů hloubky $h$ ve stromě je nejméně $a^h$.
+
+\subsection{Paměťová složitost}
+
+Strom s parametry $(a,b)$ a $e$ záznamy zabírá v paměti $\Theta(bn)$. Strom má nejvýše hloubku $\lceil\log_a e\rceil + 1$. Jeden vnitřní vrchol v sobě obsahuje klíče a ukazatele na nejvýše $b$ dalších vrcholů. Můžeme tedy provést horní odhad tak, že všechny hladiny budou plné a bude jich teoretický maximální počet: $$ \sum_{i=1}^{\lceil\log_a e\rceil + 1} b \cdot b^i < b^{\lceil\log_a e\rceil + 3} $$
+
+\subsection{Rychlost vyhledávání}
+
+\subsection{Rychlost vyvažování}
+
 \listoffigures
 \listoftables
 \section*{Seznam příloh}

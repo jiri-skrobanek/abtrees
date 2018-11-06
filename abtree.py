@@ -128,6 +128,7 @@ class ABTree:
             self.__rebalance(node.parent)
         elif children < self.a:
             i = 0
+            continue_with = node.parent
             while node.parent.keys[i] < node.keys[-1]:
                 i += 1
             if i < len(node.parent.keys) - 1 and len(node.parent.children[i+1].keys) == self.a:
@@ -138,6 +139,7 @@ class ABTree:
                 self.__fuse_ith_with_right(node.parent, i)
             else:
                 self.__fuse_ith_with_right(node.parent, i - 1)
+            self.__rebalance(continue_with)
 
     def __fuse_ith_with_right(self, node: InternalNode, i: int):
         left = node.children[i]
@@ -148,7 +150,7 @@ class ABTree:
         del node.keys[i]
         for child in right.children:
             child.parent = right
-        self.__rebalance(right)
+        # self.__rebalance(right)
 
     def find_leq(self, key: int):
         if key == math.inf:
