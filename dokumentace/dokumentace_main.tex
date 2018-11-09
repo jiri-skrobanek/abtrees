@@ -180,11 +180,29 @@ Z definice musejí mít všechny vnitřní vrcholy nejméně $a$ synů, a proto 
 
 \subsection{Paměťová složitost}
 
-Strom s parametry $(a,b)$ a $e$ záznamy zabírá v paměti $\Theta(bn)$. Strom má nejvýše hloubku $\lceil\log_a e\rceil + 1$. Jeden vnitřní vrchol v sobě obsahuje klíče a ukazatele na nejvýše $b$ dalších vrcholů. Můžeme tedy provést horní odhad tak, že všechny hladiny budou plné a bude jich teoretický maximální počet: $$ \sum_{i=1}^{\lceil\log_a e\rceil + 1} b \cdot b^i < b^{\lceil\log_a e\rceil + 3} $$
+Strom s parametry $(a,b)$ a $e$ záznamy zabírá v paměti $\Theta(e)$. Neuvažujeme, kolik zabírají samotné údaje, které do stromu ukládáme, pouze strukturu stromu a klíče. Strom má nejvýše hloubku $\lceil\log_a e\rceil + 1$. Jeden vnitřní vrchol v sobě obsahuje klíče a ukazatele na nejvýše $b$ dalších vrcholů. 
+
+Můžeme tedy provést horní odhad tak, že všechny hladiny budou plné a bude jich teoretický maximální počet. V tomto případě je počet vnějších vrcholů roven $a$. Další úroveň obsahuje ve vrcholech klíče a ukazatele na externí vrcholy, ale všechny další obsahují nejméně $a$-krát méně klíčů, je jich $a$-krát méně. Součet takovéto geometrické řady je vždy pouze konstantním násobkem prvního členu, tedy $e$.
 
 \subsection{Rychlost vyhledávání}
 
+Vyhledávání se použije nejen v případě, že je potřeba získat z pole záznam, ale také při vkládání a odstraňování, je tedy nutné, aby probíhalo rychle. 
+
+Jak plyne z algoritmu, začíná se ve stromě a sestupuje se až na spodní hladinu. V každém prošlém vrcholu se přitom porovná až $b$ klíčů. Pokud je hledání nakonec neúspěšné, proces se liší až posledním krokem.
+
+Dohromady to dává $ \Theta(b\log_a e) $ operací ve stromě s $e$ záznamy.
+
 \subsection{Rychlost vyvažování}
+
+Vyvažování spouštíme na nějakém konkrétním vrcholu, pouze pro tento vrchol hrozí porušení počtu synů. Provádí se de facto dvě operace:
+
+\textbf{Slučování} Pokud se uskuteční sloučení vrcholu, vrchol vzniklý po sloučení bude mít počet synů v pořádku. Jen jeho otce bude třeba preventivně zkusit vyvážit (pokud existuje). Nově vzniklý vrchol už je ale vyvážený a nebude se k němu potřeba vracet.
+
+Hledání vrcholů ke sloučení i vyrábění nového vrcholu je práce s $ \mathcal{O}(b) $ klíči.
+
+\textbf{Rozdělování} Vrcholy vzniklé rozdělením mají správný počet synů, vyvažování pokračuje otcem těchto vrcholů.
+
+Protože máme již určeno jaká je maximální hloubka stromu a vyvažuje se maximálně 1 vrchol v každé hloubce, můžeme říci, že během vyvažování proběhne $ \mathcal{O}(e) $ operací.
 
 \listoffigures
 \listoftables
