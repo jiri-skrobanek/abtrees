@@ -106,3 +106,31 @@ class DeleteFromTree(unittest.TestCase):
             tree.delete((37 * i + 3) % 25999)
 
         self.assertEqual(tree.item_count(), 0)
+
+
+class Contains(unittest.TestCase):
+
+    def test_all(self):
+        tree = ABTree(3, 5)
+        values = set()
+        for i in range(50):
+            value = (37 * i + 3) % 25999
+            tree.insert(value, value)
+            values.add(value)
+
+        for i in range(0, 25999):
+            self.assertEqual(tree.contains(i), i in values)
+
+
+class Find(unittest.TestCase):
+
+    def test_all(self):
+        tree = ABTree(3, 5)
+        values = set()
+        for i in range(50):
+            value = (37 * i + 3) % 25999
+            tree.insert(value, value)
+            values.add(value)
+
+        for i in range(0, 25999):
+            self.assertEqual(tree.find(i), i)

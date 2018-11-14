@@ -3,7 +3,7 @@
 \usepackage[czech]{babel}
 \usepackage{geometry}
 \usepackage{tikz,multirow,listingsutf8,multicol,amsmath,amsfonts}
-\lstset{showstringspaces=false,stringstyle=\color{orange},basicstyle=\ttfamily\large,keywordstyle=\bfseries\color{blue!60!black}}
+\lstset{language=python,showstringspaces=false,stringstyle=\color{orange},basicstyle=\ttfamily\large,keywordstyle=\bfseries\color{blue!60!black}}
 \geometry{left=20mm,right=20mm,top=20mm,bottom=20mm}
 \parindent=0mm
 \parskip=0mm
@@ -123,15 +123,18 @@ find_greater(self, key: int)
 Vrací: \texttt{(k, value)} Uspořádaná dvojice klíče a hodnoty z vnějšího vrcholu, který má minimální klíč v množině vrcholů s klíčem v intervalu $\left( key, \infty \right) $
 	
 Složitost: $\mathcal{O}(\log E)$
-	
+
+\section{Příkladové použití}
+Na obrázku \ref{code} vidíme použití stromu. Na vyhledání pomocí klíče můžeme použít funkci \texttt{\_\_get\_item\_\_}.
+\begin{figure}[h]
+\lstinputlisting[basicstyle=\ttfamily\normalsize]{../demo.py}
+\caption{Příkladový program}
+\label{code}
+\end{figure}
+
 \section{Stručný popis algoritmů}
 	
 \subsection{Vkládání}
-\begin{figure}
-\centering
-\includegraphics{pics/drawing.pdf}
-\caption{Příkladový (3,5)-strom}
-\end{figure}
 	
 Vkládáme \texttt{key, value}.  Pokud  je  strom  prázdný  vytvoříme  kořen,  který  bude  mít  nově  vkládaný záznam jako jednoho syna a vrchol s klíčem $\infty$ jako druhého syna. Začneme u kořene. Z vrcholu přejdeme na jeho syna, který má nejbližší vyšší klíč než \texttt{key}.
 
@@ -169,6 +172,12 @@ Kontrolu stromu vždy začínáme v nějakém vrcholu. A může se vyvíjet něk
 \end{itemize}
 
 Výsledkem vyvažování je platný (a,b)-strom.
+
+\begin{figure}
+	\centering
+	\includegraphics{pics/drawing.pdf}
+	\caption{Příkladový (3,5)-strom}
+\end{figure}
 
 \section{Analýza složitosti}
 

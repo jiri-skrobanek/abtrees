@@ -50,6 +50,12 @@ class ABTree:
             return node.value
         return None
 
+    def __getitem__(self, item):
+        return self.find(item)
+
+    def __len__(self):
+        return self.count
+
     def insert(self, key: int, value=None):
         if self.root is None:
             self.root = InternalNode(None)
