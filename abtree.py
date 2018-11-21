@@ -2,6 +2,8 @@ import math
 
 
 class InternalNode:
+    """Represents a node in (a,b)-tree which is not a leaf."""
+
     def __init__(self, parent=None):
         self.keys = []
         self.children = []
@@ -12,12 +14,16 @@ class InternalNode:
 
 
 class ExternalNode:
+    """Represents a node in (a,b)-tree which is a leaf."""
+
     def __init__(self, key: int, value=None):
         self.key = key
         self.value = value
 
 
 class ABTree:
+    """(a,b)-search tree, receives (a,b) upon creation."""
+
     def __init__(self, a: int, b: int):
         if a < 2:
             raise ValueError('Improper a,b choice.')
@@ -156,7 +162,6 @@ class ABTree:
         del node.keys[i]
         for child in right.children:
             child.parent = right
-        # self.__rebalance(right)
 
     def find_leq(self, key: int):
         if key == math.inf:
@@ -271,9 +276,9 @@ class ABTree:
         del node.children[i]
         del node.keys[i]
 
-        if i == len(node.keys):  # Deleted last key, change keys in ancestors.
+        if i == len(node.keys) and node != self.root:  # Deleted last key, change keys in ancestors.
             parent = node.parent
-            while lev >= 0:
+            while lev > 0:
                 j = 0
                 while parent.keys[j] < key:
                     j += 1

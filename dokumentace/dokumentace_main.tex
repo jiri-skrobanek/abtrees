@@ -3,7 +3,7 @@
 \usepackage[czech]{babel}
 \usepackage{geometry}
 \usepackage{tikz,multirow,listingsutf8,multicol,amsmath,amsfonts}
-\lstset{language=python,showstringspaces=false,stringstyle=\color{orange},basicstyle=\ttfamily\large,keywordstyle=\bfseries\color{blue!60!black}}
+\lstset{language=python,showstringspaces=false,stringstyle=\color{orange},basicstyle=\ttfamily\large,keywordstyle=\color{blue!60!black}}
 \geometry{left=20mm,right=20mm,top=20mm,bottom=20mm}
 \parindent=0mm
 \parskip=0mm
@@ -24,7 +24,7 @@
 	
 \section*{Abstract}
 	
-This documentation describes the entire functionality of (a,b)-trees implementation in Python 3 by Jiří Škrobánek. Aside from listing all methods, principles of (a,b)-trees are explained and complexity of used algorithms is analysed.
+This documentation describes the entire functionality of (a,b)-trees implementation in Python 3 by Jiří Škrobánek. Aside from listing all methods, principles of (a,b)-trees are explained and complexity of used algorithms is briefly analysed.
 	
 \tableofcontents
 	
@@ -125,11 +125,21 @@ Vrací: \texttt{(k, value)} Uspořádaná dvojice klíče a hodnoty z vnějšíh
 Složitost: $\mathcal{O}(\log E)$
 
 \section{Příkladové použití}
-Na obrázku \ref{code} vidíme použití stromu. Na vyhledání pomocí klíče můžeme použít funkci \texttt{\_\_get\_item\_\_}.
+Na obrázku \ref{code} vidíme použití stromu. Na vyhledání pomocí klíče můžeme použít funkci \texttt{\_\_get\_item\_\_} a na zjištění počtu záznamů ve stromě \texttt{\_\_len\_\_}.
+
+
 \begin{figure}[h]
-\lstinputlisting[basicstyle=\ttfamily\normalsize]{../demo.py}
+\lstinputlisting[frame=single,basicstyle=\ttfamily\normalsize]{../demo.py}
 \caption{Příkladový program}
 \label{code}
+\end{figure}
+
+Na obrázku \ref{output} vidíme výstup získaný spuštěním příkladového programu.
+
+\begin{figure}
+\lstinputlisting[frame=single,basicstyle=\ttfamily\normalsize]{out.txt}
+\caption{Výstup příkladového programu}
+\label{output}
 \end{figure}
 
 \section{Stručný popis algoritmů}
@@ -214,13 +224,6 @@ Hledání vrcholů ke sloučení i vyrábění nového vrcholu je práce s $ \ma
 Protože máme již určeno jaká je maximální hloubka stromu a vyvažuje se maximálně 1 vrchol v každé hloubce, můžeme říci, že během vyvažování proběhne $ \mathcal{O}(e) $ operací.
 
 \listoffigures
-\listoftables
-\section*{Seznam příloh}
-%\addcontentsline{toc}{chapter}{Seznam příloh}
-\begin{enumerate}
-	\item[A.] Zdrojový kód knihovny
-	\item[B.] Zdrojové kódy příkladů
-\end{enumerate}
 \begin{thebibliography}{10}
 	\bibitem{aocp}
 	KNUTH, Donald Ervin. The Art of Computer Programming. Upper Saddle River, NJ: Addison-Wesley, 2011. ISBN 978-0321751041.

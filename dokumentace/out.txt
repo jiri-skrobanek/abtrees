@@ -1,0 +1,5 @@
+Value at 10: 7
+
+Element greater than 20: (40, 1)
+
+Amount of entries in the tree: 5
